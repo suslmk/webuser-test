@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    imagename = "13.209.37.23:5000/webuser"
+    imagename = "paasta-cp/webuser"
     registryCredential = '906a7514-910d-4992-a42c-b4bbfe7eea34'
     dockerImage = ''
     privateURL = "13.209.37.23:5000"
@@ -47,8 +47,8 @@ pipeline {
       steps{
         script {
           docker.withRegistry('http://'+privateURL, registryCredential) {
-            //dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('latest')
+            dockerImage.push("$BUILD_NUMBER")
+            dockerImage.push('latest')
           }
         }
       }
