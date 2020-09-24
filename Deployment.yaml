@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: webuser
-        image: paasta-cp/webuser
+        image: paasta-cp/webuser:latest
         ports:
         - containerPort: 8091
