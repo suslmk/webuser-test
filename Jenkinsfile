@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Cloning Github') {
       steps {
-        git branch: 'master', credentialsId: 'suslmk-lee', url: 'https://github.com/suslmk-lee/dashboard-test'
+        git branch: 'dev', credentialsId: 'suslmk-lee', url: 'https://github.com/suslmk-lee/webuser-test'
       }
     }
 	stage('Environment') {
