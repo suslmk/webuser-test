@@ -26,6 +26,11 @@ pipeline {
                 }
             }
         }
+	stage('Clean Build') {
+            steps {
+                sh './gradlew clean'
+            }
+        }
 	stage('Build Jar') {
             steps {
                 sh './gradlew build'
