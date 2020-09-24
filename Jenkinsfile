@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    imagename = "suslmk/dashboard01"
-    registryCredential = 'f88cb9e0-bf0a-4a4f-8fef-b5e2497b7fce'
+    imagename = "13.209.37.23:5000/webuser"
+    registryCredential = '906a7514-910d-4992-a42c-b4bbfe7eea34'
     dockerImage = ''
     privateURL = "13.209.37.23:5000"
   }
@@ -43,16 +43,16 @@ pipeline {
         }
       }
     }
-    //stage('Deploy Image') {
-    //  steps{
-    //    script {
-    //      docker.withRegistry('http://'+privateURL, registryCredential) {
-    //        dockerImage.push("$BUILD_NUMBER")
-    //         dockerImage.push('latest')
-    //      }
-    //    }
-    //  }
-    //}
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry('http://'+privateURL, registryCredential) {
+            dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push('latest')
+          }
+        }
+      }
+    }
     //stage('Kubernetes test') {
     //	steps{
 	//          sh("kubectl --kubeconfig /home/ubuntu/admin.conf get pod")
