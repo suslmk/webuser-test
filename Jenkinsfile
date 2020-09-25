@@ -71,12 +71,12 @@ pipeline {
 			)
 		}
 	}
-	stage('Kubernetes service deploy') {
-    	steps{
+	//stage('Kubernetes service deploy') {
+    //	steps{
 	          //sh("kubectl --kubeconfig /home/ubuntu/admin.conf -n default delete service webuser-deployment")
 			  //sh("kubectl --kubeconfig /home/ubuntu/admin.conf -n default expose deployment webuser-deployment")
-	    }
-	}
+	//    }
+	//}
     //stage('Remove Unused docker image') {
     //  steps{
     //    sh "docker rmi $privateURL/$imagename:$BUILD_NUMBER"
