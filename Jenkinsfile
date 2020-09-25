@@ -1,6 +1,6 @@
 pipeline {
 	environment {
-		IMAGE_NAME = "webuser"
+		IMAGE_NAME = "container-platform-webuser"
 		REGISTRY_CREDENTIAL = '906a7514-910d-4992-a42c-b4bbfe7eea34'
 		REGISTRY_URL = "3.34.129.44:5000"
 		REGISTRY_URL_IP = "3.34.129.44"
@@ -39,7 +39,7 @@ pipeline {
 		stage('Building image') {
 			steps{
 				script {
-					dockerImage = docker.build REGISTRY_URL+"/"+IMAGE_NAME
+					dockerImage = docker.build REGISTRY_URL+"/"+IMAGE_NAME+":latest"
 				}
 			}
 		}
@@ -49,7 +49,7 @@ pipeline {
 					docker.withRegistry("http://"+REGISTRY_URL) 
 					{
 						//dockerImage.push("$BUILD_NUMBER")
-						dockerImage.push('latest')
+						dockerImage.push()
 					}
 				}
 			}
