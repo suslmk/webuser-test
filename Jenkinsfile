@@ -18,7 +18,7 @@ pipeline {
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
   }
   stages {
-    stage('Example') {
+    stage('Example_input') {
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
