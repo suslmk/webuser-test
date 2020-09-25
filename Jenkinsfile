@@ -65,6 +65,7 @@ pipeline {
 				configs: "yaml/Deployment.yaml", 
 				kubeconfigId: '23b61cff-a44f-4199-9576-38b5642ab823', 
 				enableConfigSubstitution: true
+				sh "kubectl --kubeconfig /home/ubuntu/admin.conf -n default delete service webuser-deployment"
 				//sh "kubectl --kubeconfig=/root/.jenkins/.kube/config rollout restart deployment/wildfly-deployment"
 				//kubernetesDeploy configs: 'hello-kubernetes-dep.yaml', kubeConfig: [path: ''], kubeconfigId: '13d30c98-310b-40a9-95bd-a05e7ab49d21', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
 			)
