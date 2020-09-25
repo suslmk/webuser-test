@@ -3,6 +3,7 @@ pipeline {
 		IMAGE_NAME = "webuser"
 		REGISTRY_CREDENTIAL = '906a7514-910d-4992-a42c-b4bbfe7eea34'
 		REGISTRY_URL = "3.34.129.44:5000"
+		REGISTRY_URL_IP = "3.34.129.44"
 	}
 	agent any
 	stages {
@@ -38,7 +39,7 @@ pipeline {
 		stage('Building image') {
 			steps{
 				script {
-					dockerImage = docker.build REGISTRY_URL
+					dockerImage = docker.build REGISTRY_URL+"/"+IMAGE_NAME
 				}
 			}
 		}
@@ -47,7 +48,7 @@ pipeline {
 				script {
 					docker.withRegistry("http://"+REGISTRY_URL) 
 					{
-						dockerImage.push("$BUILD_NUMBER")
+						//dockerImage.push("$BUILD_NUMBER")
 						dockerImage.push('latest')
 					}
 				}
@@ -76,8 +77,8 @@ pipeline {
 				echo "REGISTRY_URL: $REGISTRY_URL"
 				echo "IMAGE_NAME: $IMAGE_NAME"
 				echo "BUILD_NUMBER: $BUILD_NUMBER"
-				sh "docker rmi $REGISTRY_URL/$IMAGE_NAME:$BUILD_NUMBER"
 				sh "docker rmi $REGISTRY_URL/$IMAGE_NAME:latest"
+				sh "docker rmi $REGISTRY_URL/$REGISTRY_URL_IP:$BUILD_NUMBER"
 			}
 		}
 	}
