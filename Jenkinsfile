@@ -40,6 +40,7 @@ pipeline {
 			steps{
 				script {
 					dockerImage = docker.build REGISTRY_URL+"/"+IMAGE_NAME+":latest"
+					dockerVersionedImage = docker.build REGISTRY_URL+"/"+IMAGE_NAME+":$BUILD_NUMBER"
 				}
 			}
 		}
@@ -48,7 +49,7 @@ pipeline {
 				script {
 					docker.withRegistry("http://"+REGISTRY_URL) 
 					{
-						dockerImage.push("$BUILD_NUMBER")
+						dockerVersionedImage.push()
 						dockerImage.push()
 					}
 				}
