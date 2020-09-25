@@ -3,7 +3,7 @@ pipeline {
     imagename = "3.34.129.44:5000/webuser"
     registryCredential = '906a7514-910d-4992-a42c-b4bbfe7eea34'
     dockerImage = ''
-    privateURL = "13.209.37.23:5000"
+    privateURL = "3.34.129.44:5000"
   }
   agent any
   stages {
