@@ -3,7 +3,6 @@ pipeline {
 		IMAGE_NAME = "container-platform-webuser"
 		REGISTRY_CREDENTIAL = '906a7514-910d-4992-a42c-b4bbfe7eea34'
 		REGISTRY_URL = "3.34.129.44:5000"
-		REGISTRY_URL_IP = "3.34.129.44"
 	}
 	agent any
 	stages {
@@ -79,7 +78,7 @@ pipeline {
 				echo "IMAGE_NAME: $IMAGE_NAME"
 				echo "BUILD_NUMBER: $BUILD_NUMBER"
 				sh "docker rmi $REGISTRY_URL/$IMAGE_NAME:latest"
-				sh "docker rmi $REGISTRY_URL/$REGISTRY_URL_IP:latest"
+				sh "docker rmi $REGISTRY_URL/$IMAGE_NAME:$BUILD_NUMBER"
 			}
 		}
 	}
