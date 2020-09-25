@@ -38,7 +38,7 @@ pipeline {
 		stage('Building image') {
 			steps{
 				script {
-					dockerImage = docker.build REGISTRY_URL+"/"+IMAGE_NAME
+					dockerImage = docker.build REGISTRY_URL
 				}
 			}
 		}
