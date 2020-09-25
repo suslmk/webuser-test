@@ -35,5 +35,5 @@ spec:
     protocol: TCP
     targetPort: 8091
   selector:
-    run: webuser
+    app: webuser
   type: NodePort
