@@ -48,8 +48,8 @@ pipeline {
 				script {
 					docker.withRegistry("http://"+REGISTRY_URL) 
 					{
-						dockerVersionedImage.push()
 						dockerImage.push()
+						dockerVersionedImage.push()
 					}
 				}
 			}
