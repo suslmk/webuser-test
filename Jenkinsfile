@@ -48,14 +48,14 @@ pipeline {
 		stage('Building image') {
 			steps{
 				script {
-					dockerImage = docker.build IMAGE_NAME
+					dockerImage = docker.build ${params.IMAGE_NAME}
 				}
 			}
 		}
 		stage('Deploy Image') {
 			steps{
 				script {
-					docker.withRegistry('http://'+REGISTRY_URL) 
+					docker.withRegistry('http://'+${params.REGISTRY_URL}) 
 					{
 						dockerImage.push("$BUILD_NUMBER")
 						dockerImage.push('latest')
