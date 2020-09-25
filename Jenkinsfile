@@ -1,47 +1,20 @@
 pipeline {
   environment {
-    imagename = "3.34.129.44:5000/webuser"
+    //imagename = "3.34.129.44:5000/webuser"
     registryCredential = '906a7514-910d-4992-a42c-b4bbfe7eea34'
     dockerImage = ''
-    privateURL = "3.34.129.44:5000"
+    //privateURL = "3.34.129.44:5000"
   }
   agent any
   parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
- 
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
- 
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
- 
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
- 
-        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+        string(name: 'imagename', defaultValue: '3.34.129.44:5000/webuser', description: '')
+		string(name: 'privateURL', defaultValue: '3.34.129.44:5000', description: '')
   }
   stages {
-    stage('Example_input') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
-            steps {
-                echo "Hello, ${PERSON}, nice to meet you."
-            }
-        }
     stage('Example') {
             steps {
-                echo "Hello ${params.PERSON}"
- 
-                echo "Biography: ${params.BIOGRAPHY}"
- 
-                echo "Toggle: ${params.TOGGLE}"
- 
-                echo "Choice: ${params.CHOICE}"
- 
-                echo "Password: ${params.PASSWORD}"
+                echo "Hello ${params.imagename}"
+                echo "Biography: ${params.privateURL}"
         }
     }
     stage('Cloning Github') {
