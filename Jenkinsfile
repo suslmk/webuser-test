@@ -48,7 +48,7 @@ pipeline {
 				script {
 					docker.withRegistry("http://"+REGISTRY_URL) 
 					{
-						//dockerImage.push("$BUILD_NUMBER")
+						dockerImage.push("$BUILD_NUMBER")
 						dockerImage.push()
 					}
 				}
