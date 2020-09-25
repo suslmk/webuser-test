@@ -1,18 +1,18 @@
 pipeline {
 	environment {
-		//IMAGE_NAME = "3.34.129.44:5000/webuser"
+		IMAGE_NAME = "3.34.129.44:5000/webuser"
 		REGISTRY_CREDENTIAL = '906a7514-910d-4992-a42c-b4bbfe7eea34'
 		//REGISTRY_URL = "3.34.129.44:5000"
 	}
 	agent any
 	parameters {
-        string(name: 'IMAGE_NAME', defaultValue: '3.34.129.44:5000/webuser', description: '')
+        //string(name: 'IMAGE_NAME', defaultValue: '3.34.129.44:5000/webuser', description: '')
 		string(name: 'REGISTRY_URL', defaultValue: '3.34.129.44:5000', description: '')
 	}
 	stages {
 		stage('Example') {
             steps {
-                echo "Hello ${params.IMAGE_NAME}"
+                //echo "Hello ${params.IMAGE_NAME}"
                 echo "Biography: ${params.REGISTRY_URL}"
 			}
 		}
@@ -48,14 +48,14 @@ pipeline {
 		stage('Building image') {
 			steps{
 				script {
-					dockerImage = docker.build ${params.IMAGE_NAME}
+					dockerImage = docker.build IMAGE_NAME
 				}
 			}
 		}
 		stage('Deploy Image') {
 			steps{
 				script {
-					docker.withRegistry('http://'+${params.REGISTRY_URL}) 
+					docker.withRegistry('http://'+REGISTRY_URL) 
 					{
 						dockerImage.push("$BUILD_NUMBER")
 						dockerImage.push('latest')
