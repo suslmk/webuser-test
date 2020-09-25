@@ -83,6 +83,9 @@ pipeline {
 		}
 		stage('Remove Unused docker image') {
 			steps{
+				echo "REGISTRY_URL: $REGISTRY_URL"
+				echo "IMAGE_NAME: $IMAGE_NAME"
+				echo "BUILD_NUMBER: $BUILD_NUMBER"
 				sh "docker rmi $REGISTRY_URL/$IMAGE_NAME:$BUILD_NUMBER"
 				sh "docker rmi $REGISTRY_URL/$IMAGE_NAME:latest"
 			}
