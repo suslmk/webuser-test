@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    imagename = "paasta-cp/webuser"
+    imagename = "3.34.129.44:5000/webuser"
     registryCredential = '906a7514-910d-4992-a42c-b4bbfe7eea34'
     dockerImage = ''
     privateURL = "13.209.37.23:5000"
@@ -46,7 +46,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry('http://'+privateURL, registryCredential) {
+          //docker.withRegistry('http://'+privateURL, registryCredential) {
             dockerImage.push("$BUILD_NUMBER")
             dockerImage.push('latest')
           }
@@ -61,7 +61,7 @@ pipeline {
     stage('Kubernetes deploy') {
 		steps {
 			kubernetesDeploy (
-				configs: "Deployment.yaml", 
+				configs: "yaml/Deployment.yaml", 
 				kubeconfigId: '23b61cff-a44f-4199-9576-38b5642ab823', 
 				enableConfigSubstitution: true
 				//sh "kubectl --kubeconfig=/root/.jenkins/.kube/config rollout restart deployment/wildfly-deployment"
