@@ -4,6 +4,7 @@ metadata:
   name: webuser-deployment
   labels:
     app: webuser
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -19,3 +20,20 @@ spec:
         image: 3.34.129.44:5000/webuser:latest
         ports:
         - containerPort: 8091
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webuser-deployment
+  labels:
+    app: webuser
+  namespace: default
+spec:
+  ports:
+  - nodePort: 30091
+    port: 8091
+    protocol: TCP
+    targetPort: 8091
+  selector:
+    run: webuser
+  type: NodePort
